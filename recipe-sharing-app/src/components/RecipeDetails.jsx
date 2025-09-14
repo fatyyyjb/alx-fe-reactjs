@@ -5,7 +5,9 @@ import DeleteRecipeButton from './DeleteRecipeButton';
 
 const RecipeDetails = () => {
   const { id } = useParams();
-  const recipe = useRecipeStore((state) => state.recipes.find((r) => r.id === id));
+  const recipe = useRecipeStore((state) =>
+    state.recipes.find((r) => r.id === id)
+  );
 
   if (!recipe) {
     return (
@@ -20,10 +22,11 @@ const RecipeDetails = () => {
     <div>
       <h1>{recipe.title}</h1>
       <p>{recipe.description}</p>
+      <p><strong>ID:</strong> {recipe.id}</p> {/* ✅ Explicit reference to recipe.id */}
 
       <div style={{ display: 'flex', gap: 8 }}>
-        <Link to={`/recipes/${id}/edit`}>Edit</Link>
-        <DeleteRecipeButton recipeId={id} />
+        <Link to={`/recipes/${recipe.id}/edit`}>Edit</Link> {/* ✅ Using recipe.id */}
+        <DeleteRecipeButton recipeId={recipe.id} />
         <Link to="/">Back</Link>
       </div>
     </div>
