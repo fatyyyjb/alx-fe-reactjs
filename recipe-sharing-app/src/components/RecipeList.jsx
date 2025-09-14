@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import DeleteRecipeButton from './DeleteRecipeButton';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const recipes = useRecipeStore((state) =>
+    state.searchTerm ? state.filteredRecipes : state.recipes
+  );
 
   return (
     <div>
       <h2>Recipes</h2>
       {recipes.length === 0 ? (
-        <p>No recipes yet. Add one!</p>
+        <p>No recipes found.</p>
       ) : (
         recipes.map((recipe) => (
           <div key={recipe.id} style={{ border: '1px solid #ddd', padding: 12, marginBottom: 8 }}>

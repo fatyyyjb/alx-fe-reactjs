@@ -4,6 +4,7 @@ import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 function App() {
@@ -18,16 +19,13 @@ function App() {
             element={
               <>
                 <AddRecipeForm />
+                <SearchBar />   {/* ✅ Search bar added */}
                 <RecipeList />
               </>
             }
           />
-
           <Route path="/recipes/:id" element={<RecipeDetails />} />
           <Route path="/recipes/:id/edit" element={<EditRecipeForm />} />
-
-          {/* Fallback to home */}
-          <Route path="*" element={<div>Not found. <a href="/">Go home</a></div>} />
         </Routes>
       </div>
     </BrowserRouter>
