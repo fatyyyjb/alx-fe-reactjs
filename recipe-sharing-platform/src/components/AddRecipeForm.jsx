@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 function AddRecipeForm({ onAddRecipe }) {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [steps, setSteps] = useState(""); // changed from instructions
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !ingredients.trim() || !instructions.trim()) {
+    if (!title.trim() || !ingredients.trim() || !steps.trim()) {
       setError("All fields are required.");
       return;
     }
@@ -24,14 +24,14 @@ function AddRecipeForm({ onAddRecipe }) {
     const newRecipe = {
       id: Date.now(),
       title,
-      summary: instructions.split("\n")[0],
+      summary: steps.split("\n")[0],
       image: "https://via.placeholder.com/400x250",
       ingredients: ingredients.split("\n"),
-      instructions: instructions.split("\n"),
+      steps: steps.split("\n"), // changed key to steps
     };
 
     onAddRecipe(newRecipe);
-    navigate("/"); // redirect to home after adding
+    navigate("/"); // redirect to home
   };
 
   return (
@@ -59,11 +59,11 @@ function AddRecipeForm({ onAddRecipe }) {
         </div>
 
         <div>
-          <label className="block text-lg font-medium mb-2">Preparation Steps (one per line)</label>
+          <label className="block text-lg font-medium mb-2">Steps (one per line)</label>
           <textarea
             className="w-full border border-gray-300 rounded-xl p-3 h-36 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
           />
         </div>
 
