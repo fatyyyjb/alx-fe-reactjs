@@ -1,26 +1,96 @@
 [
   {
     "id": 1,
-    "title": "Spaghetti Carbonara",
-    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "title": "Lemon Cheesecake",
+    "summary": "Light, tangy cheesecake with a fresh lemon zest finish",
+    "image": "/imgs/LUSCIOUS Lemon Cheesecake (with VIDEO) - Scientifically Sweet.jfif",
+    "ingredients": [
+      "200g digestive biscuits",
+      "100g butter, melted",
+      "400g cream cheese",
+      "150g sugar",
+      "200ml double cream",
+      "2 eggs",
+      "Zest of 1 lemon",
+      "Juice of 1 lemon"
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Crush biscuits and mix with melted butter, press into a springform pan.",
+      "Beat cream cheese and sugar until smooth.",
+      "Add eggs, cream, lemon zest, and juice. Mix well.",
+      "Pour mixture over biscuit base.",
+      "Bake for 45-50 minutes until set. Cool before serving."
+    ]
   },
   {
     "id": 2,
-    "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "title": "Caramel Cheesecake",
+    "summary": "Rich cheesecake swirled with caramel and a buttery biscuit crust",
+    "image": "/imgs/Classic New York Cheesecake_ The Elegant Star of Easy and Quick Desserts.jfif",
+    "ingredients": [
+      "200g digestive biscuits",
+      "100g butter, melted",
+      "400g cream cheese",
+      "150g sugar",
+      "200ml double cream",
+      "2 eggs",
+      "100g caramel sauce"
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Crush biscuits and mix with butter, press into pan.",
+      "Beat cream cheese and sugar until smooth.",
+      "Add eggs and cream, mix well.",
+      "Pour over base, swirl in caramel sauce.",
+      "Bake 45-50 minutes. Cool before serving."
+    ]
   },
   {
     "id": 3,
-    "title": "Cheesecake",
-    "summary": "Rich and creamy cheesecake with a buttery biscuit base.",
-    "image": "https://via.placeholder.com/150"
+    "title": "Crème Brûlée Cheesecake",
+    "summary": "Silky cheesecake with a caramelized sugar crust on top.",
+    "image": "/imgs/Dreamy Creme Brulee Cheesecake Recipe_ Sweet Bliss in Every Bite.jfif",
+    "ingredients": [
+      "200g digestive biscuits",
+      "100g butter, melted",
+      "400g cream cheese",
+      "150g sugar",
+      "200ml double cream",
+      "2 eggs",
+      "2 tbsp sugar for caramelizing"
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Crush biscuits, mix with butter, press into pan.",
+      "Beat cream cheese and sugar until smooth.",
+      "Add eggs and cream, mix well.",
+      "Pour over base and bake 45-50 minutes.",
+      "Sprinkle sugar on top and caramelize with a torch."
+    ]
   },
   {
     "id": 4,
-    "title": "Lemon Tart",
-    "summary": "Tangy lemon curd in a crisp pastry shell topped with cream.",
-    "image": "https://via.placeholder.com/150"
+    "title": "Strawberry Cheesecake",
+    "summary": "Classic cheesecake topped with fresh strawberries and whipped cream",
+    "image": "/imgs/Classic New York Cheesecake_ The Elegant Star of Easy and Quick Desserts.jfif",
+    "ingredients": [
+      "200g digestive biscuits",
+      "100g butter, melted",
+      "400g cream cheese",
+      "150g sugar",
+      "200ml double cream",
+      "2 eggs",
+      "Fresh strawberries for topping",
+      "Whipped cream"
+    ],
+    "instructions": [
+      "Preheat oven to 180°C (350°F).",
+      "Crush biscuits, mix with butter, press into pan.",
+      "Beat cream cheese and sugar until smooth.",
+      "Add eggs and cream, mix well.",
+      "Pour over base and bake 45-50 minutes. Cool.",
+      "Top with fresh strawberries and whipped cream before serving."
+    ]
   }
 ]
