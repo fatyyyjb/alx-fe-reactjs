@@ -4,40 +4,47 @@ import { useNavigate } from "react-router-dom";
 function AddRecipeForm({ onAddRecipe }) {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState(""); // changed from instructions
-  const [error, setError] = useState("");
+  const [steps, setSteps] = useState("");
+  const [errors, setErrors] = useState({}); // changed from single error
   const navigate = useNavigate();
+
+  // Validation function
+  const validate = () => {
+    const newErrors = {};
+
+    if (!title.trim()) newErrors.title = "Title is required.";
+    if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required.";
+    else if (ingredients.split("\n").length < 2)
+      newErrors.ingredients = "Please list at least two ingredients.";
+
+    if (!steps.trim()) newErrors.steps = "Steps are required.";
+
+    return newErrors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validate();
+    setErrors(validationErrors);
 
-    if (!title.trim() || !ingredients.trim() || !steps.trim()) {
-      setError("All fields are required.");
-      return;
+    if (Object.keys(validationErrors).length === 0) {
+      const newRecipe = {
+        id: Date.now(),
+        title,
+        summary: steps.split("\n")[0],
+        image: "https://via.placeholder.com/400x250",
+        ingredients: ingredients.split("\n"),
+        steps: steps.split("\n"),
+      };
+
+      onAddRecipe(newRecipe);
+      navigate("/");
     }
-
-    if (ingredients.split("\n").length < 2) {
-      setError("Please list at least two ingredients (one per line).");
-      return;
-    }
-
-    const newRecipe = {
-      id: Date.now(),
-      title,
-      summary: steps.split("\n")[0],
-      image: "https://via.placeholder.com/400x250",
-      ingredients: ingredients.split("\n"),
-      steps: steps.split("\n"), // changed key to steps
-    };
-
-    onAddRecipe(newRecipe);
-    navigate("/"); // redirect to home
   };
 
   return (
     <div className="max-w-3xl mx-auto mt-10 p-8 bg-white rounded-3xl shadow-2xl">
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">Add New Recipe</h2>
-      {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label className="block text-lg font-medium mb-2">Recipe Title</label>
@@ -47,6 +54,7 @@ function AddRecipeForm({ onAddRecipe }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {errors.title && <p className="text-red-500 mt-1">{errors.title}</p>}
         </div>
 
         <div>
@@ -56,6 +64,7 @@ function AddRecipeForm({ onAddRecipe }) {
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
           />
+          {errors.ingredients && <p className="text-red-500 mt-1">{errors.ingredients}</p>}
         </div>
 
         <div>
@@ -65,6 +74,7 @@ function AddRecipeForm({ onAddRecipe }) {
             value={steps}
             onChange={(e) => setSteps(e.target.value)}
           />
+          {errors.steps && <p className="text-red-500 mt-1">{errors.steps}</p>}
         </div>
 
         <button
