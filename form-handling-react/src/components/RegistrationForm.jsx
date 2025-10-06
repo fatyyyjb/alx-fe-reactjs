@@ -4,17 +4,28 @@ export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
-      setError("All fields are required.");
-      return;
+    const newErrors = {};
+
+    if (!username) {
+      newErrors.username = "Username is required";
+    }
+    if (!email) {
+      newErrors.email = "Email is required";
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
     }
 
-    setError("");
+    setErrors(newErrors);
+
+    // stop submission if errors exist
+    if (Object.keys(newErrors).length > 0) return;
+
     console.log("User registered:", { username, email, password });
     alert("User registered successfully!");
   };
@@ -35,6 +46,9 @@ export default function RegistrationForm() {
           onChange={(e) => setUsername(e.target.value)}
           className="border rounded-md p-2"
         />
+        {errors.username && (
+          <p className="text-red-500 text-sm">{errors.username}</p>
+        )}
 
         <input
           type="email"
@@ -44,6 +58,9 @@ export default function RegistrationForm() {
           onChange={(e) => setEmail(e.target.value)}
           className="border rounded-md p-2"
         />
+        {errors.email && (
+          <p className="text-red-500 text-sm">{errors.email}</p>
+        )}
 
         <input
           type="password"
@@ -53,8 +70,9 @@ export default function RegistrationForm() {
           onChange={(e) => setPassword(e.target.value)}
           className="border rounded-md p-2"
         />
-
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {errors.password && (
+          <p className="text-red-500 text-sm">{errors.password}</p>
+        )}
 
         <button
           type="submit"
