@@ -2,13 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
-// separate fetch function (the test expects this)
+// Step 1: Define fetch function
 const fetchPosts = async () => {
   const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
   return response.data;
 };
 
 export default function PostsComponent() {
+  // Step 2: Use React Query with keepPreviousData
   const {
     data: posts,
     isLoading,
@@ -20,6 +21,7 @@ export default function PostsComponent() {
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false,
+    keepPreviousData: true, // 👈 keeps old data in cache during refetch
   });
 
   if (isLoading) return <p>Loading posts...</p>;
@@ -48,6 +50,8 @@ export default function PostsComponent() {
           </li>
         ))}
       </ul>
+
+      {isFetching && <p className="text-sm text-gray-500 mt-2">Updating cache...</p>}
     </div>
   );
 }
