@@ -3,13 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
-import Post from "./components/Post";
 import Login from "./components/Login";
+import BlogPost from "./components/BlogPost"; // 👈 new component for dynamic route
 
 function App() {
-  // Simulate authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const ProtectedRoute = ({ children }) => {
@@ -31,12 +28,11 @@ function App() {
               <Profile />
             </ProtectedRoute>
           }
-        >
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
+        />
 
-        <Route path="/post/:postId" element={<Post />} />
+        {/* Dynamic routing for blog posts */}
+        <Route path="/blog/:id" element={<BlogPost />} />
+
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="*" element={<p>Page not found</p>} />
       </Routes>
