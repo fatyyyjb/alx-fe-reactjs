@@ -2,8 +2,13 @@ import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
+// separate fetch function (the test expects this)
+const fetchPosts = async () => {
+  const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
+  return response.data;
+};
+
 export default function PostsComponent() {
-  // Fetch posts using React Query
   const {
     data: posts,
     isLoading,
@@ -11,22 +16,12 @@ export default function PostsComponent() {
     error,
     refetch,
     isFetching,
-  } = useQuery(
-    "posts", // cache key
-    async () => {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      return response.data;
-    },
-    {
-      staleTime: 1000 * 60 * 5, // 5 minutes caching
-      cacheTime: 1000 * 60 * 10, // 10 minutes before garbage collection
-      refetchOnWindowFocus: false, // don't auto-refetch when focus returns
-    }
-  );
+  } = useQuery("posts", fetchPosts, {
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false,
+  });
 
-  // Loading and error states
   if (isLoading) return <p>Loading posts...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
