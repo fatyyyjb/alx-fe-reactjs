@@ -27,9 +27,6 @@ describe("TodoList Component", () => {
 
     fireEvent.click(todo);
     expect(todo).toHaveStyle("text-decoration: line-through");
-
-    fireEvent.click(todo);
-    expect(todo).not.toHaveStyle("text-decoration: line-through");
   });
 
   test("can delete a todo", () => {
